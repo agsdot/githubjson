@@ -1,23 +1,10 @@
 class OctoutputController < ApplicationController
 
   def statusboard
-    client = Octokit::Client.new(:login => "#{ENV['GITHUB_USERNAME']}", :oauth_token => "#{ENV['GITHUB_OAUTH_TOKEN']}")
-      # c = client.follow("mojombo")
-      # c = client.repo("pengwynn/octokit")
-      # c = client.following("agsdot")
-    c = client.commits("agsdot/gaMapQuery")
-      # Octokit.commits("pengwynn/octokit")
-      # client.commit("pengwynn/octokit") is the same as the above line, but won't hit API limit
+    commits = Octoutput.new
+    json = commits.fetch_commits
 
-    json = {'Monday' => 0, 'Tuesday' => 0, 'Wednesday' => 0, 'Thursday' => 0, 'Friday' => 0, 'Saturday' => 0, 'Sunday' => 0}
-    c.each do |item|
-      date = item['commit']['committer']['date']
-      dayofweek = Time.parse(date).strftime('%A')
-      json[ dayofweek ] += 1 # item['value'] # or something
-    end
-
-    render :json =>
-
+    output =
     {
       "graph" => {
           "title" => "Git Commits",
@@ -41,6 +28,10 @@ class OctoutputController < ApplicationController
 
       }
     }
+
+    render :json => output
+
+
   end
 
 end
