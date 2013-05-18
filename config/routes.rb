@@ -3,6 +3,9 @@ Githubjson::Application.routes.draw do
 
 root :to => 'octoutput#statusboard'
 
+get "/morris" => "octoutput#morris"
+get "/morris.json" => "octoutput#morris"
+
 get '/statusboard.json' => 'octoutput#statusboard'
 
   # The priority is based upon order of creation:
