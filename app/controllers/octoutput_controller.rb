@@ -1,12 +1,5 @@
 class OctoutputController < ApplicationController
 
-
-
-
-  def index
-
-  end
-
   def morris
     commits = Octoutput.new
     json = commits.fetch_commits
@@ -26,7 +19,6 @@ class OctoutputController < ApplicationController
       format.json { render :json => output}
     end
 
-
   end
 
 
@@ -35,7 +27,7 @@ class OctoutputController < ApplicationController
     commits = Octoutput.new
     json = commits.fetch_commits
 
-    output =
+    @output =
     {
       "graph" => {
           "title" => "Git Commits",
@@ -60,7 +52,7 @@ class OctoutputController < ApplicationController
       }
     }
 
-    render :json => output
+    render :json => @output
 
 
   end
