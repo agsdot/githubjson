@@ -1,7 +1,7 @@
 Githubjson::Application.routes.draw do
 
 
-root :to => 'octoutput#statusboard'
+root :to => 'octoutput#index'
 
 get "/morris" => "octoutput#morris"
 get "/morris.json" => "octoutput#morris"
