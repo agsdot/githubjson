@@ -5,8 +5,12 @@ root :to => 'octoutput#index'
 
 get "/morris" => "octoutput#morris"
 get "/morris.json" => "octoutput#morris"
+get "/d3" => "octoutput#d3"
+get "/d3.json" => "octoutput#d3"
 
 get '/statusboard.json' => 'octoutput#statusboard'
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

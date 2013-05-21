@@ -21,6 +21,21 @@ class OctoutputController < ApplicationController
 
   end
 
+  def d3
+    commits = Octoutput.new
+    days = commits.fetch_commits
+
+    data = days.map do |key, value|
+      value
+    end
+    respond_to do |format|
+      format.html
+      format.json { render :json => data}
+    end
+
+  end
+
+
 
 
   def statusboard
