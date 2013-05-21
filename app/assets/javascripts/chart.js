@@ -1,4 +1,9 @@
 $(document).ready(function() {
+var button = document.getElementById('button');
+var container = document.getElementById('container');
+
+button.onclick = function () {
+  // alert('hi');
   $.ajax({
   url: '/d3.json',
   method: 'get',
@@ -13,15 +18,23 @@ $(document).ready(function() {
         .attr('height', 30)
         .attr('width', 0)
         .transition()
-        .duration(2000)
+        .duration(3000)
+        .style('fill', 'red')
         .attr('width', function(value){
-          return value * 4;
+          return value * 6;
         })
         .attr('y', function(value, i){
           return i * 20;
-        });
+        })
+        .transition()
+        .duration(3000)
+        .style('fill', 'orange')
+        .transition()
+        .duration(3000)
+        .attr("width", function(value){return value * 15;});
   }
 
 
   });
+  };
 });
