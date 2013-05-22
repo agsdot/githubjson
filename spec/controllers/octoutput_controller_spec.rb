@@ -17,45 +17,18 @@ describe OctoutputController do
 
   it "gets a json hash for statusboard" do
     get :statusboard
-    commits = Octoutput.new
-    json = commits.fetch_commits
-    expect(json).to be_a Hash
+    expect(assigns(:json)).to be_a Hash
   end
 
-  it "expects a ____ result for statusboard" do
-    pending
-    #       get :data
-    #       @data = assigned(:data)
-    #       @response = response
-    #     end
-
-    #       expect(@data)["graph"]["datasequence"]).to be_an Array (or Hash)
-    #                         to eq "Rattings of Top 10"
-    # pending
+  it "expects an Array result for statusboard datasequence" do
     get :statusboard
-    # @output = assigned(:output)
-    # expect(@output)["graph"]["datasequence"].to be_an Array
-
-    expect(@output.inspect)["graph"]["datasequence"].to be_an Array
+    expect(assigns(:output)["graph"]["datasequences"]).to be_an Array
 
   end
 
   it "delivers an an array for morris output" do
     get :morris
-    commits = Octoutput.new
-    json = commits.fetch_commits
-    output =
-            [
-                { "title" => "#{json.keys[0]}", "value" => json['Monday']},
-                { "title" => "#{json.keys[1]}", "value" => json['Tuesday']},
-                { "title" => "#{json.keys[2]}", "value" => json['Wednesday']},
-                { "title" => "#{json.keys[3]}", "value" => json['Thursday']},
-                { "title" => "#{json.keys[4]}", "value" => json['Friday']},
-                { "title" => "#{json.keys[5]}", "value" => json['Saturday']},
-                { "title" => "#{json.keys[6]}", "value" => json['Sunday']}
-
-            ]
-    expect(output).to be_an Array
+    expect(assigns(:output)).to be_an Array
   end
 
 

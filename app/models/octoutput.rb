@@ -11,7 +11,7 @@ class Octoutput
       json[ dayofweek ] += 1
     end
 
-    return json
+    json
 
 
   end

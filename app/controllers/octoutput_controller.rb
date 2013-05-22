@@ -3,7 +3,7 @@ class OctoutputController < ApplicationController
   def morris
     commits = Octoutput.new
     json = commits.fetch_commits
-    output =
+    @output =
             [
                 { "title" => "#{json.keys[0]}", "value" => json['Monday']},
                 { "title" => "#{json.keys[1]}", "value" => json['Tuesday']},
@@ -16,7 +16,7 @@ class OctoutputController < ApplicationController
             ]
     respond_to do |format|
       format.html
-      format.json { render :json => output}
+      format.json { render :json => @output}
     end
 
   end
@@ -40,7 +40,7 @@ class OctoutputController < ApplicationController
 
   def statusboard
     commits = Octoutput.new
-    json = commits.fetch_commits
+    @json = commits.fetch_commits
 
     @output =
     {
@@ -51,13 +51,13 @@ class OctoutputController < ApplicationController
             {
               "title" => "Take me to GA",
               "datapoints" => [
-                  { "title" => "#{json.keys[0]}", "value" => "#{json['Monday']}"},
-                  { "title" => "#{json.keys[1]}", "value" => "#{json['Tuesday']}"},
-                  { "title" => "#{json.keys[2]}", "value" => "#{json['Wednesday']}"},
-                  { "title" => "#{json.keys[3]}", "value" => "#{json['Thursday']}"},
-                  { "title" => "#{json.keys[4]}", "value" => "#{json['Friday']}"},
-                  { "title" => "#{json.keys[5]}", "value" => "#{json['Saturday']}"},
-                  { "title" => "#{json.keys[6]}", "value" => "#{json['Sunday']}"}
+                  { "title" => "#{@json.keys[0]}", "value" => "#{@json['Monday']}"},
+                  { "title" => "#{@json.keys[1]}", "value" => "#{@json['Tuesday']}"},
+                  { "title" => "#{@json.keys[2]}", "value" => "#{@json['Wednesday']}"},
+                  { "title" => "#{@json.keys[3]}", "value" => "#{@json['Thursday']}"},
+                  { "title" => "#{@json.keys[4]}", "value" => "#{@json['Friday']}"},
+                  { "title" => "#{@json.keys[5]}", "value" => "#{@json['Saturday']}"},
+                  { "title" => "#{@json.keys[6]}", "value" => "#{@json['Sunday']}"}
 
               ]
             }
